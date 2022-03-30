@@ -1,84 +1,169 @@
-// const movieCard = document.getElementById("movie-container");
-const form = document.querySelector("form");
+var arrowPrev = document.querySelectorAll('.swiper-button-prev');
+var arrowNext = document.querySelectorAll('.swiper-button-next');
+const form = document.querySelector('form');
 
-form.addEventListener("submit", e => {
-    const input = document.querySelector("input");
-    e.preventDefault();
-    ajaxRequest(input.value);
+let tmdbid = "tt" + 3896198;
+
+// const searchButton = document.getElementById('search-button');
+// const searchInput = document.getElementById('search-input');
+// searchButton.addEventListener('click', () => {
+//   const inputValue = searchInput.value;
+//   $.ajax({
+//     url: `http://www.omdbapi.com/?apikey=7106c092&s=${inputValue}`,
+//     success: m => {
+//       const movies = m.Search;
+//       let moviesArr = "";
+//       movies.forEach(movie => {
+//         moviesArr += `<div class="swiper-slide" ><img src="${movie.Poster}" alt=""></div>`
+//       });
+//       $(".popular-movies").html(moviesArr);
+//     },
+//     error: e => {
+//       console.log(e.responseData);
+//     } 
+//   })
+// });
+
+
+$.ajax({
+  url: 'http://www.omdbapi.com/?apikey=7106c092&s=avengers',
+  success: m => {
+    const movies = m.Search;
+    let moviesArr = "";
+    movies.forEach(movie => {
+      moviesArr += `<div class="swiper-slide" ><img src="${movie.Poster}" alt=""></div>`
+    });
+    $(".popular-movies").html(moviesArr);
+  },
+  error: e => {
+    console.log(e.responseData);
+  } 
 })
 
-window.addEventListener("DOMContentLoaded", () => ajaxRequest("avengers"));
-
-const ajaxRequest = (title) => {
-    $.ajax({
-        url: `http://www.omdbapi.com/?i=tt3896198&apikey=7106c092&s=${title}`,
-        success: results => {
-            const movies = results.Search;
-            let movieCardArr = movies.map(m => {
-                return `<div class="col-md-4 my-5">
-                <div class="card" style= "max-width: 80%;">
-                    <img src="${m.Poster}" class="card-img-top" alt="">
-                    <div class="card-body">
-                      <h5 class="card-title">${m.Title}</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">${m.Year}</h6>
-                      <a href="#" class="btn btn-primary modal-details-button" data-bs-toggle="modal" data-bs-target="#MovieModal" data-imdb="${m.imdbID}">Details</a>
-                    </div>
-                  </div>
-            </div>`;
-            });
-    
-           $('#movie-container').html(movieCardArr.join(""));
-           $('.modal-details-button').click(function() {
-               $.ajax({
-                    url: 'http://www.omdbapi.com/?i=' + $(this).data('imdb') + '&apikey=7106c092',
-                    success: m => {
-                        // console.log("True");
-                        $('.modal-body').html(`  <div class="container-fluid">
-                        <div class="row">
-                          <div class="col-md-3">
-                            <img src="${m.Poster}" alt="" class="img-fluid">
-                          </div>
-                          <div class="col md">
-                            <ul class="list-group">
-                              <li class="list-group-item"><h4>${m.Title} (${m.Year})</h4></li>
-                              <li class="list-group-item"><strong>Director : </strong> ${m.Director} </li>
-                              <li class="list-group-item"><strong>Actors : </strong> ${m.Actors} </li>
-                              <li class="list-group-item"><strong>Writer : </strong> ${m.Writer} </li>
-                              <li class="list-group-item"><strong>Plot : </strong> <br> ${m.Plot} </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </di`)
-                    }
-               })
-           })
-            
-        }
-    
-    
+$.ajax({
+  url: 'http://www.omdbapi.com/?apikey=7106c092&s=harry potter',
+  success: m => {
+    const movies = m.Search;
+    let moviesArr = "";
+    movies.forEach(movie => {
+      moviesArr += `<div class="swiper-slide" ><img src="${movie.Poster}" alt=""></div>`
     });
+    $(".harry-movies").html(moviesArr);
+  },
+  error: e => {
+    console.log(e.responseData);
+  } 
+})
+
+$.ajax({
+  url: 'http://www.omdbapi.com/?apikey=7106c092&s=star wars',
+  success: m => {
+    const movies = m.Search;
+    let moviesArr = "";
+    movies.forEach(movie => {
+      moviesArr += `<div class="swiper-slide" ><img src="${movie.Poster}" alt=""></div>`
+    });
+    $(".star-movies").html(moviesArr);
+  },
+  error: e => {
+    console.log(e.responseData);
+  } 
+})
+
+$.ajax({
+  url: `http://www.omdbapi.com/?apikey=7106c092&i=${tmdbid}`,
+  success: m => {
+
+    console.log(m);
+    let carouselMovie = `<div class="col-5 carousel-body ">
+    <h2 class="carousel-title">${m.Title}</h2>
+    <button type="button" class="btn btn-secondary my-3">Details</button>
+    <p>${m.Plot}</p>
+  </div>
+  <div class="col-5 text-center">
+    <img src="${m.Poster}" class="img-fluid" alt="">
+  </div>`
+    
+   
+    $(".carousel").html(carouselMovie);
+  },
+  error: e => {
+    console.log(e.responseData);
+  } 
+})
+
+
+
+
+
+
+
+
+function myFunction(x) {
+  if (x.matches) { // If media query matches
+    arrowPrev.forEach(arrow => {
+      arrow.style.display = "none";
+    });
+
+    arrowNext.forEach(arrow => {
+      arrow.style.display = "none";
+    });
+    
+  } 
+  else {
+    arrowPrev.forEach(arrow => {
+      arrow.style.display = "block";
+    });
+
+    arrowNext.forEach(arrow => {
+      arrow.style.display = "block";
+    });
+  }
+
 }
 
-// $.ajax({
-//     url: `http://www.omdbapi.com/?i=tt3896198&apikey=7106c092&s=avengers`,
-//     success: results => {
-//         const movies = results.Search;
-//         let movieCardArr = movies.map(m => {
-//             return `<div class="col-md-4 my-5">
-//             <div class="card">
-//                 <img src="${m.Poster}" class="card-img-top" alt="">
-//                 <div class="card-body">
-//                   <h5 class="card-title">${m.Title}</h5>
-//                   <h6 class="card-subtitle mb-2 text-muted">${m.Year}</h6>
-//                   <a href="#" class="btn btn-primary">Go somewhere</a>
-//                 </div>
-//               </div>
-//         </div>`;
-//         });
-
-//        $('#movie-container').html(movieCardArr.join(""));
-        
-//     }
+var x = window.matchMedia("(max-width: 700px)")
+myFunction(x); // Call listener function at run time
+x.addListener(myFunction); // Attach listener function on state changes
 
 
-// });
+
+var swiper = new Swiper(".mySwiper", {
+  slidesPerView: 5,
+  spaceBetween: 30,
+  // loop: true,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+    
+  },
+  breakpoints: {
+    100: {
+      slidesPerView: 2,
+      spaceBetween: 30,
+    },
+    640: {
+      slidesPerView: 4,
+      spaceBetween: 30,
+    },
+    768: {
+      slidesPerView: 4,
+      spaceBetween: 30,
+      loop: true,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      }
+    },
+    1024: {
+      slidesPerView: "auto",
+      spaceBetween: 30,
+      // loop: true,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      }
+    },
+  }
+});
+
