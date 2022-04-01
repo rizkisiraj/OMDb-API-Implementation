@@ -11,6 +11,8 @@ form1.addEventListener("submit", function(e) {
   e.preventDefault();
   console.log(input.value);
 
+
+
   $.ajax({
     url: `http://www.omdbapi.com/?apikey=7106c092&s=${input.value}`,
     success: m => {
