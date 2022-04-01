@@ -14,7 +14,7 @@ form1.addEventListener("submit", function(e) {
 
 
   $.ajax({
-    url: `http://www.omdbapi.com/?apikey=7106c092&s=${input.value}`,
+    url: `https://www.omdbapi.com/?apikey=7106c092&s=${input.value}`,
     success: m => {
       const movies = m.Search;
       let moviesArr = `<div class="container-fluid"><div class="row justify-content-center" style="width=100%;">`;
@@ -29,7 +29,7 @@ form1.addEventListener("submit", function(e) {
         console.log($(this).data('imdbid'));
   
         $.ajax({
-          url: `http://www.omdbapi.com/?apikey=7106c092&i=${$(this).data('imdbid')}`,
+          url: `https://www.omdbapi.com/?apikey=7106c092&i=${$(this).data('imdbid')}`,
           success: m => {
             const { Title, Year, Director, Actors, Plot, Poster } = m;
             $(".modal-body").html(`<div class="container-fluid">
@@ -61,7 +61,7 @@ form1.addEventListener("submit", function(e) {
 
 
 $.ajax({
-  url: 'http://www.omdbapi.com/?apikey=7106c092&s=avengers',
+  url: 'https://www.omdbapi.com/?apikey=7106c092&s=avengers',
   success: m => {
     const movies = m.Search;
     let moviesArr = "";
@@ -74,7 +74,7 @@ $.ajax({
       console.log($(this).data('imdb'));
 
       $.ajax({
-        url: `http://www.omdbapi.com/?apikey=7106c092&i=${$(this).data('imdb')}`,
+        url: `https://www.omdbapi.com/?apikey=7106c092&i=${$(this).data('imdb')}`,
         success: m => {
           const { Title, Year, Director, Actors, Plot, Poster } = m;
           $(".modal-body").html(`<div class="container-fluid">
@@ -102,7 +102,7 @@ $.ajax({
 })
 
 $.ajax({
-  url: 'http://www.omdbapi.com/?apikey=7106c092&s=harry potter',
+  url: 'https://www.omdbapi.com/?apikey=7106c092&s=harry potter',
   success: m => {
     const movies = m.Search;
     let moviesArr = "";
@@ -115,7 +115,7 @@ $.ajax({
       
 
       $.ajax({
-        url: `http://www.omdbapi.com/?apikey=7106c092&i=${$(this).data('imdb')}`,
+        url: `https://www.omdbapi.com/?apikey=7106c092&i=${$(this).data('imdb')}`,
         success: m => {
           const { Title, Year, Director, Actors, Plot, Poster } = m;
           $(".modal-body").html(`<div class="container-fluid">
@@ -143,7 +143,7 @@ $.ajax({
 })
 
 $.ajax({
-  url: 'http://www.omdbapi.com/?apikey=7106c092&s=star wars',
+  url: 'https://www.omdbapi.com/?apikey=7106c092&s=star wars',
   success: m => {
     const movies = m.Search;
     let moviesArr = "";
@@ -156,7 +156,7 @@ $.ajax({
       
 
       $.ajax({
-        url: `http://www.omdbapi.com/?apikey=7106c092&i=${$(this).data('imdb')}`,
+        url: `https://www.omdbapi.com/?apikey=7106c092&i=${$(this).data('imdb')}`,
         success: m => {
           const { Title, Year, Director, Actors, Plot, Poster } = m;
           $(".modal-body").html(`<div class="container-fluid">
@@ -185,7 +185,7 @@ $.ajax({
 })
 
 $.ajax({
-  url: `http://www.omdbapi.com/?apikey=7106c092&i=${tmdbid}`,
+  url: `https://www.omdbapi.com/?apikey=7106c092&i=${tmdbid}`,
   success: m => {
 
     let carouselMovie = `<div class="col-5 carousel-body ">
