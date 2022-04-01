@@ -36,6 +36,7 @@ html body .carousel .carousel-body .carousel-title {
 
 html body .movie {
   width: 100%;
+  max-width: 968px;
 }
 
 html body .movie .row {
@@ -102,5 +103,14 @@ html body .movie .row .swiper .swiper-wrapper .swiper-slide img {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  cursor: pointer;
+}
+
+.img-slide:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transition: .3s;
+  transition: .3s;
+  cursor: pointer;
 }
 /*# sourceMappingURL=style.css.map */
